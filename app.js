@@ -33,25 +33,14 @@ async function checkWether(city) {
         CurrentDate.innerHTML = SystemDate.getDate() + "/" + (SystemDate.getMonth() + 1) + "/" + SystemDate.getFullYear();
         var data = await response.json();
         console.log(data);
+        var iconCode = data.weather[0].icon;
+        var iconUrl = `https://openweathermap.org/img/wn/${iconCode}@2x.png`
         City.innerHTML = data.name;
         Temperature.innerHTML = Math.round(data.main.temp);
         Humidity.innerHTML = Math.round(data.main.humidity);
         WindSpeed.innerHTML = Math.round(data.wind.speed);
-        if (data.weather[0].main == "Clouds") {
-            weatherIcon.src = "./images/clouds.png";
-        } else if (data.weather[0].main == "Clear") {
-            weatherIcon.src = "./images/clear.png";
-        } else if (data.weather[0].main == "Rain") {
-            weatherIcon.src = "./images/rain.png";
-        } else if (data.weather[0].main == "Drizzle") {
-            weatherIcon.src = "./images/drizzle.png";
-        } else if (data.weather[0].main == "Mist") {
-            weatherIcon.src = "./images/mist.png";
-        } else if (data.weather[0].main == "Snow") {
-            weatherIcon.src = "./images/snow.png";
-        } else if (data.weather[0].main == "Smoke") {
-            weatherIcon.src = "./images/smoke.png";
-        }
+        weatherIcon.src = iconUrl;
+        
     }
 }
 
